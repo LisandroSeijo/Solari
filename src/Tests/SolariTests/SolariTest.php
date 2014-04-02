@@ -56,11 +56,13 @@ class SolariTest extends PHPUnit_Framework_TestCase
 		$youtubeURL    = 'https://www.youtube.com/watch?v=pZ_3F93hgZw';
 		$soundcloudURL = 'https://soundcloud.com/cianuro-budha-1/sets/dejueves';
 
-		$this->assertTrue(
-			Solari::sound($youtubeURL) instanceof YouTubeDriver
+		$this->assertInstanceOf(
+			'YouTubeDriver',
+			Solari::sound($youtubeURL)
 		);
-		$this->assertTrue(
-			Solari::sound($soundcloudURL) instanceof SoundCloudDriver
+		$this->assertInstanceOf(
+			'SoundCloudDriver',
+			Solari::sound($soundcloudURL)
 		);
 	}
 }
