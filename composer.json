@@ -1,0 +1,11 @@
+{
+	"require" : {
+		"ise/php-soundcloud": "3.0.0"
+	},
+
+    "autoload": {
+        "psr-0": {
+            "Solari\\": "src/"
+        }
+    }
+}
