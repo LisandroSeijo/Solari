@@ -7,6 +7,11 @@ use Solari\Drivers\SoundCloudDriver;
 
 class Solari
 {
+	/**
+	* Services supported
+	*
+	* @var array
+	*/
 	static protected $supported = array(
 		'youtube',
 		'soundcloud'
@@ -14,7 +19,7 @@ class Solari
 
 
 	/**
-	* Un driver de la web
+	* Return a driver
 	*/
 	public static function sound($url)
 	{
@@ -27,6 +32,9 @@ class Solari
 	}
 
 
+	/**
+	* Check the url and select driver
+	*/
 	protected static function getDriver($url)
 	{
 		switch (self::getDriverName($url)) 
@@ -47,6 +55,9 @@ class Solari
 	}
 
 
+	/**
+	* Return driver name
+	*/
 	protected static function getDriverName($url)
 	{
 		$ret   = null;
@@ -66,7 +77,7 @@ class Solari
 
 
 	/**
-	* Devuelve si la url es soportada
+	* Return if a url is supported
 	*/
 	public static function isSupported($url)
 	{

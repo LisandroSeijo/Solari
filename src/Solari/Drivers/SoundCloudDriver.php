@@ -12,7 +12,7 @@ class SoundCloudDriver
 	* 
 	* @var string
 	*/
-	private $_clientID = 'c64092aff862ad97ddeb272d61427dca';
+	private $_clientID = '';
 
 
 	/**
@@ -20,7 +20,7 @@ class SoundCloudDriver
 	* 
 	* @var string
 	*/
-	private $_clientSecret = 'b0c90d275cf66fb86e89a592e9d3908f';
+	private $_clientSecret = '';
 
 
 	/**
@@ -150,18 +150,33 @@ class SoundCloudDriver
 	| Sets
 	|--------------------------------------------------------------------------
 	*/
+	/**
+	* Soundcloud client id
+	*
+	* @param string
+	*/
 	public function setClientID($val)
 	{
 		$this->_clientID = $val;
 	}
 
 
+	/**
+	* Soundcloud client secret
+	*
+	* @param string
+	*/
 	public function setClientSecret($val)
 	{
 		$this->_clientSecret = $val;
 	}
 
 
+	/**
+	* Set url
+	*
+	* @param string
+	*/
 	public function setURL($val)
 	{
 		$this->_url = $val;
@@ -174,18 +189,27 @@ class SoundCloudDriver
 	| Gets
 	|--------------------------------------------------------------------------
 	*/
+	/**
+	* Return soundcloud client id
+	*/
 	public function getClientID()
 	{
 		return $this->_clientID;
 	}
 
 
+	/**
+	* Return soundcloud client secret
+	*/
 	public function getClientSecret()
 	{
 		return $this->_clientSecret;
 	}
 
 
+	/**
+	* Return url
+	*/
 	public function getURL()
 	{
 		return $this->_url;
@@ -194,7 +218,7 @@ class SoundCloudDriver
 
 	/*
 	|--------------------------------------------------------------------------
-	| Track attributes
+	| Common attributes
 	|--------------------------------------------------------------------------
 	*/
 	/**
@@ -233,6 +257,11 @@ class SoundCloudDriver
 	}
 
 
+	/*
+	|--------------------------------------------------------------------------
+	| Soundcloud attributes
+	|--------------------------------------------------------------------------
+	*/
 	/**
 	* Track artist
 	*/
