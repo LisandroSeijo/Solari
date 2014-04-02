@@ -5,7 +5,7 @@ namespace Solari\Drivers;
 use \Exception as Exception;
 use \stdClass as stdClass;
 
-class SoundCloudDriver
+class SoundCloudDriver extends SolariDriver
 {
 	/**
 	* Client ID
