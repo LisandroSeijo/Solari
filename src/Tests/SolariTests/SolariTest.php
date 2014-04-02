@@ -1,6 +1,6 @@
 <?php
 
-use Solari\Solari as Solari;
+use Solari\Solari;
 use Solari\Drivers\YouTubeDriver;
 use Solari\Drivers\SoundCloudDriver;
 

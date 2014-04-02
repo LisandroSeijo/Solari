@@ -25,9 +25,9 @@ class DriversTest extends PHPUnit_Framework_TestCase
 			$this->clientSoundcloud->checkURL()
 		);
 
-		/*$this->assertFalse(
+		$this->assertFalse(
 			$this->clientSoundcloud->checkURL('https://soundcloud.com/false/url/to/check');
-		);*/
+		);
 	}
 
 
