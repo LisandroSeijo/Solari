@@ -1,8 +1,9 @@
 <?php
 
-use Solari\Solari as Solari;
+use Solari\Solari;
 use Solari\Drivers\YouTubeDriver;
 use Solari\Drivers\SoundCloudDriver;
+use Solari\Drivers\BandcampDriver;
 
 class DriversTest extends PHPUnit_Framework_TestCase
 {
@@ -13,6 +14,9 @@ class DriversTest extends PHPUnit_Framework_TestCase
 		);
 		$this->clientYouTube = Solari::sound(
 			'https://www.youtube.com/watch?v=pZ_3F93hgZw'
+		);
+		$this->clientBandcamp = Solari::sound(
+			'http://sovereigngracemusic.bandcamp.com/album/30-three-decades-of-songs-for-the-church'
 		);
 
 		parent::__construct();
@@ -36,6 +40,18 @@ class DriversTest extends PHPUnit_Framework_TestCase
 		$this->assertFalse(
 			$this->clientYouTube->checkURL('https://www.youtube.com/watch?v=url_no_valida')
 		);
+
+		$this->assertTrue(
+			$this->clientBandcamp->checkURL(
+				'http://sovereigngracemusic.bandcamp.com/album/30-three-decades-of-songs-for-the-church'
+			)
+		);
+
+		$this->assertFalse(
+			$this->clientBandcamp->checkURL(
+				'http://sovereigngracemusic.bandcamp.com/album/jnknjk-mklmkl-or-the-church'
+			)
+		);
 	}
 
 
@@ -47,6 +63,10 @@ class DriversTest extends PHPUnit_Framework_TestCase
 
 		$this->assertNotEmpty(
 			$this->clientYouTube->embed()
+		);
+
+		$this->assertNotEmpty(
+			$this->clientBandcamp->embed()
 		);
 	}
 
@@ -62,9 +82,6 @@ class DriversTest extends PHPUnit_Framework_TestCase
 
 		$this->assertNotEmpty(
 			$this->clientYouTube->title()
-		);
-		$this->assertNotEmpty(
-			$this->clientYouTube->artist()
 		);
 	}
 }
