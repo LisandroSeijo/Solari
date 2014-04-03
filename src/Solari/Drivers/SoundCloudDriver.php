@@ -12,14 +12,14 @@ class SoundCloudDriver extends SolariDriver
 	* 
 	* @var string
 	*/
-	private $_clientID = '';
+	private $_clientID = 'c64092aff862ad97ddeb272d61427dca';
 
 	/**
 	* Client secret
 	* 
 	* @var string
 	*/
-	private $_clientSecret = '';
+	private $_clientSecret = 'b0c90d275cf66fb86e89a592e9d3908f';
 
 	/**
 	* API connection
@@ -89,7 +89,7 @@ class SoundCloudDriver extends SolariDriver
 
 			if ($this->_url)
 			{
-				if (!$this->checkURL($url))
+				if (!$this->checkURL($this->_url))
 				{
 					throw new Exception('Bad url');
 				}

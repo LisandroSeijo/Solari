@@ -2,6 +2,12 @@
 
 namespace Solari\Drivers;
 
+use \Exception as Exception;
+use \DomDocument as DomDocument;
+use \DOMXPath as DOMXPath;
+
+libxml_use_internal_errors(true);
+
 class BandcampDriver extends SolariDriver
 {
 	/**
@@ -99,9 +105,9 @@ class BandcampDriver extends SolariDriver
 		
 		foreach ($metas as $m) 
 		{
-			if ($meta->getAttribute('property') == 'og:video')
+			if ($m->getAttribute('property') == 'og:video')
 			{
-			    $content = $meta->getAttribute('content');
+			    $content = $m->getAttribute('content');
 			}
 		}
 
@@ -121,7 +127,7 @@ class BandcampDriver extends SolariDriver
 	/**
 	* Set Album id
 	*/
-	public function setVideoId()
+	public function setAlbumId()
 	{
 		$this->_albumId = $this->getAlbumId($this->_url);
 	}
@@ -130,7 +136,7 @@ class BandcampDriver extends SolariDriver
 	/**
 	* Set album information
 	*/
-	private function setAlbum()
+	private function loadAlbum()
 	{
 		// TODO: search more information
 		$xpath = new DOMXPath($this->_dom);
