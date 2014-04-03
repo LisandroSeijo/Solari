@@ -94,19 +94,19 @@ class YouTubeDriver extends SolariDriver
 		$ytJson = json_decode(
 			file_get_contents(
 				# Api URL
-				'https://gdata.youtube.com/feeds/api/videos/.'
+				'https://gdata.youtube.com/feeds/api/videos/.'.
 				
 				# Video id
-				.$this->_videoId
+				$this->_videoId.
 				
 				# Options:
 				# v: API version, we use 2
 				# alt: format of the feed to be returned. If you change that
-				# must change conmmons attributes content
+				# must change conmmons attributes methods
 				# 
 				# More information: 
 				# https://developers.google.com/youtube/2.0/developers_guide_protocol_api_query_parameters#Standard_parameters
-				.'?v=2&alt=json'
+				'?v=2&alt=json'
 			),
 			true
 		);
@@ -140,22 +140,22 @@ class YouTubeDriver extends SolariDriver
 	/**
 	* Video description
 	*/
-    public function description() 
-    {
-    	return $this->_videoData['media$group']['media$description']['$t'];
-    }
+	public function description() 
+	{
+		return $this->_videoData['media$group']['media$description']['$t'];
+	}
 
-    
-    /**
+
+	/**
 	* Video image
 	*/
-    public function img() 
-    {
-    	# 2 is the defaul image with high quality.
-    	# You can change that to:
-    	# 0: default image
-    	# 1: default image medium quality
-    	# 3/4/5: differents images
-    	return $this->_videoData['media$group']['media$thumbnail'][2]['url'];
-    }
+	public function img() 
+	{
+		# 2 is the defaul image with high quality.
+		# You can change that to:
+		# 0: default image
+		# 1: default image medium quality
+		# 3/4/5: differents images
+		return $this->_videoData['media$group']['media$thumbnail'][2]['url'];
+	}
 }
