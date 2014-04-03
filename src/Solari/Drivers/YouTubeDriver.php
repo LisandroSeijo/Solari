@@ -76,7 +76,7 @@ class YouTubeDriver extends SolariDriver
 		parse_str(
 			parse_url($url, PHP_URL_QUERY), $get
 		);
-		return $get['v'];
+		return isset($get['v']) ? $get['v'] : '';
 	}
 
 	
