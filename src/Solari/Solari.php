@@ -4,6 +4,7 @@ namespace Solari;
 
 use Solari\Drivers\YouTubeDriver;
 use Solari\Drivers\SoundCloudDriver;
+use Solari\Drivers\BandcampDriver;
 
 class Solari
 {
@@ -14,7 +15,8 @@ class Solari
 	*/
 	static protected $supported = array(
 		'youtube',
-		'soundcloud'
+		'soundcloud',
+		'bandcamp'
 	);
 
 
@@ -45,6 +47,10 @@ class Solari
 
 			case 'youtube':
 				$driver = new YouTubeDriver($url);
+				break;
+
+			case 'bandcamp':
+				$driver = new BandcampDriver($url);
 				break;
 			
 			default:
