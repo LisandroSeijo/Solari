@@ -28,6 +28,14 @@ class DriversTest extends PHPUnit_Framework_TestCase
 		$this->assertFalse(
 			$this->clientSoundcloud->checkURL('https://soundcloud.com/false/url/to/check')
 		);
+
+		$this->assertTrue(
+			$this->clientYouTube->checkURL('https://www.youtube.com/watch?v=pZ_3F93hgZw')
+		);
+
+		$this->assertFalse(
+			$this->clientYouTube->checkURL('https://www.youtube.com/watch?v=url_no_valida')
+		);
 	}
 
 
@@ -36,19 +44,27 @@ class DriversTest extends PHPUnit_Framework_TestCase
 		$this->assertNotEmpty(
 			$this->clientSoundcloud->embed()
 		);
+
+		$this->assertNotEmpty(
+			$this->clientYouTube->embed()
+		);
 	}
 
 
 	public function testSoundcloudTracksInfo()
 	{
 		$this->assertNotEmpty(
-			$this->clientSoundcloud->embed()
-		);
-		$this->assertNotEmpty(
 			$this->clientSoundcloud->title()
 		);
 		$this->assertNotEmpty(
 			$this->clientSoundcloud->artist()
+		);
+
+		$this->assertNotEmpty(
+			$this->clientYouTube->title()
+		);
+		$this->assertNotEmpty(
+			$this->clientYouTube->artist()
 		);
 	}
 }
