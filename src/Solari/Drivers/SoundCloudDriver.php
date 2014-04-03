@@ -14,14 +14,12 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	private $_clientID = '';
 
-
 	/**
 	* Client secret
 	* 
 	* @var string
 	*/
 	private $_clientSecret = '';
-
 
 	/**
 	* API connection
@@ -30,14 +28,12 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	private $_client;
 
-
 	/**
 	* Track URL
 	*
 	* @var string
 	*/
 	private $_url;
-
 
 	/**
 	* Track
