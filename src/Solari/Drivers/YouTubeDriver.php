@@ -33,14 +33,13 @@ class YouTubeDriver extends SolariDriver
 	*/
 	public function __construct($url)
 	{
-		$this->_url = $url;
-		$this->setVideoId($url);
-		
-		if (!$this->checkURL())
+		if (!$this->checkURL($url))
 		{
 			throw new Exception("Bad url");
 		}
 
+		$this->_url = $url;
+		$this->setVideoId($url);
 		$this->loadVideo();
 	}
 
@@ -56,7 +55,8 @@ class YouTubeDriver extends SolariDriver
 		$ret = false;
 
 		$headers = get_headers(
-			'http://gdata.youtube.com/feeds/api/videos/'.$this->_videoId
+			'http://gdata.youtube.com/feeds/api/videos/'.
+			$this->getVideoId($url)
 		);
 
 		if (strpos($headers[0], '200')) 
