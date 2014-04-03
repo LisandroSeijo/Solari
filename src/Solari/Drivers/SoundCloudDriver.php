@@ -64,6 +64,11 @@ class SoundCloudDriver extends SolariDriver
 		try
 		{
 			$this->init();
+
+			if ($url && !$this->checkURL($url))
+			{
+				throw new Exception('Bad url');
+			}
 		}
 		catch(Exception $ex)
 		{
@@ -122,7 +127,7 @@ class SoundCloudDriver extends SolariDriver
 		}
 		catch(Exception $ex)
 		{
-			return $ex->getMessage();
+			return false;
 		}
 	}
 
