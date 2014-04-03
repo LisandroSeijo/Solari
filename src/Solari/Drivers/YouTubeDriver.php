@@ -133,7 +133,8 @@ class YouTubeDriver extends SolariDriver
 	*/
 	public function title() 
 	{
-		return $this->_videoData['title']['$t'];
+		return isset($this->_videoData['title']['$t']) ?
+		$this->_videoData['title']['$t'] : '';
 	}
 
 	
@@ -142,7 +143,8 @@ class YouTubeDriver extends SolariDriver
 	*/
 	public function description() 
 	{
-		return $this->_videoData['media$group']['media$description']['$t'];
+		return isset($this->_videoData['media$group']['media$description']['$t']) ? 
+		$this->_videoData['media$group']['media$description']['$t'] : '';
 	}
 
 
@@ -156,6 +158,7 @@ class YouTubeDriver extends SolariDriver
 		# 0: default image
 		# 1: default image medium quality
 		# 3/4/5: differents images
-		return $this->_videoData['media$group']['media$thumbnail'][2]['url'];
+		return isset($this->_videoData['media$group']['media$thumbnail'][2]['url']) ?
+		$this->_videoData['media$group']['media$thumbnail'][2]['url'] : '';
 	}
 }
