@@ -94,7 +94,7 @@ class YouTubeDriver extends SolariDriver
 		$ytJson = json_decode(
 			file_get_contents(
 				# Api URL
-				'https://gdata.youtube.com/feeds/api/videos/.'.
+				'https://gdata.youtube.com/feeds/api/videos/'.
 				
 				# Video id
 				$this->_videoId.
