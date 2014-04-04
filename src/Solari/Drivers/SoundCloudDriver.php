@@ -85,7 +85,8 @@ class SoundCloudDriver extends SolariDriver
 		}
 
 		$this->_client = new \Soundcloud\Service(
-			$this->_clientID, $this->_clientSecret
+			$this->_clientID, 
+			$this->_clientSecret
 		);
 
 		$this->_client->setCurlOptions(
@@ -214,6 +215,12 @@ class SoundCloudDriver extends SolariDriver
 	}
 
 
+	private function getTrackAttribute($attribute)
+	{
+		return isset($this->_track->{$attribute}) ? $this->_track->{$attribute} : '';
+	}
+
+
 	/*
 	|--------------------------------------------------------------------------
 	| Common attributes
@@ -224,7 +231,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function embed()
 	{
-		return isset($this->_track->html) ? $this->_track->html : '';
+		return $this->getTrackAttribute('html');
 	}
 
 
@@ -233,7 +240,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function title()
 	{
-		return isset($this->_track->title) ? $this->_track->title : '';
+		return $this->getTrackAttribute('title');
 	}
 
 
@@ -242,7 +249,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function description()
 	{
-		return isset($this->_track->description) ? $this->_track->description : '';
+		return $this->getTrackAttribute('description');
 	}
 
 
@@ -251,7 +258,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function img()
 	{
-		return isset($this->_track->thumbnail_url) ? $this->_track->thumbnail_url : '';
+		return $this->getTrackAttribute('thumbnail_url');
 	}
 
 
@@ -265,7 +272,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function artist()
 	{
-		return isset($this->_track->author_name) ? $this->_track->author_name : '';
+		return $this->getTrackAttribute('author_name');
 	}
 
 
@@ -274,6 +281,6 @@ class SoundCloudDriver extends SolariDriver
 	*/ 
 	public function artistURL()
 	{
-		return isset($this->_track->author_url) ? $this->_track->author_url : '';
+		return $this->getTrackAttribute('author_url');
 	}
 }
