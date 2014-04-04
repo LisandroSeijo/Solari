@@ -30,7 +30,14 @@ class Solari
 			return false;
 		}
 
-		return self::getDriver($url);
+		try
+		{
+			return self::getDriver($url);
+		}
+		catch(Exception $ex)
+		{
+			throw new Exception($ex->getMessage());
+		}
 	}
 
 
@@ -39,22 +46,29 @@ class Solari
 	*/
 	protected static function getDriver($url)
 	{
-		switch (self::getDriverName($url)) 
+		try
 		{
-			case 'soundcloud':
-				$driver = new SoundCloudDriver($url);
-				break;
+			switch (self::getDriverName($url)) 
+			{
+				case 'soundcloud':
+					$driver = new SoundCloudDriver($url);
+					break;
 
-			case 'youtube':
-				$driver = new YouTubeDriver($url);
-				break;
+				case 'youtube':
+					$driver = new YouTubeDriver($url);
+					break;
 
-			case 'bandcamp':
-				$driver = new BandcampDriver($url);
-				break;
-			
-			default:
-				return false;		
+				case 'bandcamp':
+					$driver = new BandcampDriver($url);
+					break;
+				
+				default:
+					return false;		
+			}
+		}
+		catch(Exception $ex)
+		{
+			throw new Exception($ex->getMessage());
 		}
 
 		return $driver;
