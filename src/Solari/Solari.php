@@ -30,14 +30,7 @@ class Solari
 			return false;
 		}
 
-		try
-		{
-			return self::getDriver($url);
-		}
-		catch(Exception $ex)
-		{
-			throw new Exception($ex->getMessage());
-		}
+		return self::getDriver($url);
 	}
 
 
@@ -65,13 +58,13 @@ class Solari
 				default:
 					return false;		
 			}
+
+			return $driver;
 		}
 		catch(Exception $ex)
 		{
-			throw new Exception($ex->getMessage());
+			return false;
 		}
-
-		return $driver;
 	}
 
 
