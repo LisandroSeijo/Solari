@@ -79,9 +79,5 @@ class DriversTest extends PHPUnit_Framework_TestCase
 		$this->assertNotEmpty(
 			$this->clientSoundcloud->artist()
 		);
-
-		$this->assertNotEmpty(
-			$this->clientYouTube->title()
-		);
 	}
 }

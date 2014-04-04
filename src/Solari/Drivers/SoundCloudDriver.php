@@ -4,6 +4,7 @@ namespace Solari\Drivers;
 
 use \Exception;
 use \stdClass;
+use \Solari\Config\Config;
 
 class SoundCloudDriver extends SolariDriver
 {
@@ -49,17 +50,14 @@ class SoundCloudDriver extends SolariDriver
 	* @param string $clientID
 	* @param string $clientSecret
 	*/
-	public function __construct($url = null, $clientID = null, $clientSecret = null)
+	public function __construct($url)
 	{
 		$this->_track = new stdClass();
-
-		if ($url) $this->_url = $url;
-		if ($clientID) $this->_clientID = $clientID;
-		if ($clientSecret) $this->_clientSecret = $clientSecret;
-
+		$this->_url = $url;
+		
 		try
 		{
-			$this->init();
+			$this->connect();
 		}
 		catch(Exception $ex)
 		{
@@ -71,36 +69,35 @@ class SoundCloudDriver extends SolariDriver
 	/**
 	* Class initialize
 	*/
-	private function init()
+	private function connect()
 	{
+		if (!$scConfig = Config::get('soundcloud'))
+		{
+			throw new Exception('Config error');
+		}
+
+		$this->_clientID     = $scConfig['client_id'];
+		$this->_clientSecret = $scConfig['client_secret'];
+
 		if (empty($this->_clientID) || empty($this->_clientSecret))
 		{
 			throw new Exception('Client id or Client secret is empty');
 		}
 
-		try
-		{
-			$this->_client = new \Soundcloud\Service(
-				$this->_clientID, $this->_clientSecret
-			);
-			$this->_client->setCurlOptions(
-				array(CURLOPT_FOLLOWLOCATION => 1)
-			);
+		$this->_client = new \Soundcloud\Service(
+			$this->_clientID, $this->_clientSecret
+		);
 
-			if ($this->_url)
-			{
-				if (!$this->checkURL($this->_url))
-				{
-					throw new Exception('Bad url');
-				}
+		$this->_client->setCurlOptions(
+			array(CURLOPT_FOLLOWLOCATION => 1)
+		);
 
-				$this->loadURL();
-			}
-		}
-		catch(Exception $ex)
+		if (!$this->checkURL($this->_url))
 		{
-			throw new Exception($ex->getMessage());
+			throw new Exception('Bad url');
 		}
+
+		$this->loadURL();
 	}
 
 
@@ -227,7 +224,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function embed()
 	{
-		return $this->_track->html;
+		return isset($this->_track->html) ? $this->_track->html : '';
 	}
 
 
@@ -236,7 +233,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function title()
 	{
-		return $this->_track->title;
+		return isset($this->_track->title) ? $this->_track->title : '';
 	}
 
 
@@ -245,7 +242,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function description()
 	{
-		return $this->_track->description;
+		return isset($this->_track->description) ? $this->_track->description : '';
 	}
 
 
@@ -254,7 +251,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function img()
 	{
-		return $this->_track->thumbnail_url;
+		return isset($this->_track->thumbnail_url) ? $this->_track->thumbnail_url : '';
 	}
 
 
@@ -268,7 +265,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function artist()
 	{
-		return $this->_track->author_name;
+		return isset($this->_track->author_name) ? $this->_track->author_name : '';
 	}
 
 
@@ -277,6 +274,6 @@ class SoundCloudDriver extends SolariDriver
 	*/ 
 	public function artistURL()
 	{
-		return $this->_track->author_url;
+		return isset($this->_track->author_url) ? $this->_track->author_url : '';
 	}
 }
