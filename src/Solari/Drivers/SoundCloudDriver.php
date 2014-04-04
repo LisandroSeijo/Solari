@@ -2,8 +2,8 @@
 
 namespace Solari\Drivers;
 
-use \Exception as Exception;
-use \stdClass as stdClass;
+use \Exception;
+use \stdClass;
 
 class SoundCloudDriver extends SolariDriver
 {
@@ -12,14 +12,14 @@ class SoundCloudDriver extends SolariDriver
 	* 
 	* @var string
 	*/
-	private $_clientID = 'c64092aff862ad97ddeb272d61427dca';
+	private $_clientID = '';
 
 	/**
 	* Client secret
 	* 
 	* @var string
 	*/
-	private $_clientSecret = 'b0c90d275cf66fb86e89a592e9d3908f';
+	private $_clientSecret = '';
 
 	/**
 	* API connection

@@ -61,7 +61,7 @@ class YouTubeDriver extends SolariDriver
 
 		if (strpos($headers[0], '200')) 
 		{
-		    $ret = true;
+			$ret = true;
 		}
 
 		return $ret;

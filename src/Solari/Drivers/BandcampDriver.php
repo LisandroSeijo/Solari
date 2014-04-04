@@ -2,9 +2,9 @@
 
 namespace Solari\Drivers;
 
-use \Exception as Exception;
-use \DomDocument as DomDocument;
-use \DOMXPath as DOMXPath;
+use \Exception;
+use \DomDocument;
+use \DOMXPath;
 
 libxml_use_internal_errors(true);
 
@@ -70,7 +70,7 @@ class BandcampDriver extends SolariDriver
 
 		if (strpos($headers[0], '200')) 
 		{
-		    $ret = true;
+			$ret = true;
 		}
 
 		return $ret;
@@ -107,7 +107,7 @@ class BandcampDriver extends SolariDriver
 		{
 			if ($m->getAttribute('property') == 'og:video')
 			{
-			    $content = $m->getAttribute('content');
+				$content = $m->getAttribute('content');
 			}
 		}
 
@@ -147,7 +147,7 @@ class BandcampDriver extends SolariDriver
 		{
 			if ($m->getAttribute('property') == 'og:title')
 			{
-			    $this->_title = $m->getAttribute('content');
+				$this->_title = $m->getAttribute('content');
 			}
 
 			if ($m->getAttribute('property') == 'og:image')
