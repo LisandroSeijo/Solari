@@ -27,66 +27,118 @@ catch(Exception $ex)
 <head>
 	<meta charset="UTF-8">
 	<title>Solari Examples</title>
-<style>
-body {
-	font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
-}
-</style>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<div class="conten">
 	<h1>Examples</h1>
 
-	<h2>Soundcloud</h2>	
-	URL: 
-	<br />
-	Title: <?php echo $soundcloud->title(); ?>
-	<br />
-	Description: <?php echo $soundcloud->description(); ?>
-	<br />
-	Image:
-	<div>
+	<h2>Soundcloud</h2>
+	<div class="what">
+		URL:
+	</div>
+	<div class="that">
+		<a href="https://soundcloud.com/cianuro-budha-1/sets/dejueves">
+			https://soundcloud.com/cianuro-budha-1/sets/dejueves
+		</a>
+	</div>
+	<div class="what">
+		Title:
+	</div>
+	<div class="that">
+		<?php echo $soundcloud->title(); ?>
+	</div>
+	<div class="what">
+		Description: 
+	</div>
+	<div class="that">
+		<?php echo $soundcloud->description(); ?>
+	</div>
+	<div class="what">
+		Image:
+	</div>
+	<div class="that">
 		<img src="<?php echo $soundcloud->img(); ?>" alt="<?php echo $soundcloud->title(); ?>" width="100" height="100" />
 	</div>
-	<br />
-	Listen:
-	<div style="width: 500px;">
+	<div class="what">
+		Listen:
+	</div>
+	<div class="that">
 		<?php echo $soundcloud->embed(); ?>
 	</div>
+	
+	<div class="cb"></div>
 
-
-	<h2>YouTube</h2>	
-	URL: 
-	<br />
-	Title: <?php echo $youtube->title(); ?>
-	<br />
-	Description: <?php echo $youtube->description(); ?>
-	<br />
-	Image:
-	<div>
+	<h2 class="mt50">YouTube</h2>	
+	<div class="what">
+		URL:
+	</div>
+	<div class="that">
+		<a href="https://soundcloud.com/cianuro-budha-1/sets/dejueves">
+			https://soundcloud.com/cianuro-budha-1/sets/dejueves
+		</a>
+	</div>
+	<div class="what">
+		Title:
+	</div>
+	<div class="that">
+		<?php echo $youtube->title(); ?>
+	</div>
+	<div class="what">
+		Description: 
+	</div>
+	<div class="that">
+		<?php echo $youtube->description(); ?>
+	</div>
+	<div class="what">
+		Image:
+	</div>
+	<div class="that">
 		<img src="<?php echo $youtube->img(); ?>" alt="<?php echo $youtube->title(); ?>" width="100" height="100" />
 	</div>
-	<br />
-	Listen:
-	<div style="width: 500px;">
+	<div class="what">
+		Listen:
+	</div>
+	<div class="that">
 		<?php echo $youtube->embed(); ?>
 	</div>
 
+	<div class="cb"></div>
 
-	<h2>Bandcamp</h2>	
-	URL:
-	<br />
-	Title: <?php echo $bandcamp->title(); ?>
-	<br />
-	Description: <?php echo $bandcamp->description(); ?>
-	<br />
-	Image:
-	<div>
+	<h2 class="mt50">Bandcamp</h2>	
+	<div class="what">
+		URL:
+	</div>
+	<div class="that">
+		<a href="https://soundcloud.com/cianuro-budha-1/sets/dejueves">
+			https://soundcloud.com/cianuro-budha-1/sets/dejueves
+		</a>
+	</div>
+	<div class="what">
+		Title:
+	</div>
+	<div class="that">
+		<?php echo $bandcamp->title(); ?>
+	</div>
+	<div class="what">
+		Description: 
+	</div>
+	<div class="that">
+		a<?php echo $bandcamp->description(); ?>
+	</div>
+	<div class="what">
+		Image:
+	</div>
+	<div class="that">
 		<img src="<?php echo $bandcamp->img(); ?>" alt="<?php echo $bandcamp->title(); ?>" width="100" height="100" />
 	</div>
-	<br />
-	Listen:
-	<div style="width: 500px;">
+	<div class="what">
+		Listen:
+	</div>
+	<div class="that">
 		<?php echo $bandcamp->embed(); ?>
 	</div>
+	<div class="cb"></div>
+</div>
 </body>
 </html>
