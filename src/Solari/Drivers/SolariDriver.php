@@ -56,17 +56,17 @@ abstract class SolariDriver
 	{
 		if (!$this->img())
 		{
-			throw new Exception('The image is empty');
+			return false;
 		}
 
 		if (!is_dir($path))
 		{
-			throw new Exception('Destination directory not exist');
+			return false;
 		}
 
 		if (!is_writable($path))
 		{
-			throw new Exception('Destination directory is not wiritable');
+			return false;
 		}
 
 		if ($addExtension)
@@ -79,11 +79,14 @@ abstract class SolariDriver
 		
 		if (file_put_contents($dest, $image) === false)
 		{
-			throw new Exception('Error to save image');
+			return false;
 		}
 	}
 
 
+	/**
+	* Return image extension
+	*/
 	public function getExtensionImagen()
 	{
 		return pathinfo($this->img(), PATHINFO_EXTENSION);
