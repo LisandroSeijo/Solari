@@ -2,6 +2,8 @@
 
 namespace Solari\Drivers;
 
+use \stdClass;
+
 class YouTubeDriver extends SolariDriver
 {
 	/**
@@ -21,9 +23,9 @@ class YouTubeDriver extends SolariDriver
 	/**
 	* Video data
 	*
-	* @var array
+	* @var stdClass
 	*/
-	private $_videoData = array();
+	private $_videoData;
 
 	
 	/**
@@ -38,6 +40,7 @@ class YouTubeDriver extends SolariDriver
 			throw new Exception("Bad url");
 		}
 
+		$this->_videoData = new stdClass;
 		$this->_url = $url;
 		$this->setVideoId($url);
 		$this->loadVideo();
@@ -111,7 +114,31 @@ class YouTubeDriver extends SolariDriver
 			true
 		);
 
-		$this->_videoData = $ytJson['entry'];
+		$data = $ytJson['entry'];
+		$this->_videoData->title = $data['title']['$t'];
+		$this->_videoData->description = $data['media$group']['media$description']['$t'];
+
+		# 2 is the defaul image with high quality.
+		# You can change that to:
+		# 0: default image
+		# 1: default image medium quality
+		# 3/4/5: differents images
+		$this->_videoData->img = $data['media$group']['media$thumbnail'][2]['url'];
+	}
+
+
+	/**
+	* Return url
+	*/
+	public function getURL()
+	{
+		return $this->_url;
+	}
+
+
+	private function getVideoAttribute($attribute)
+	{
+		return isset($this->_albumData->{$attribute}) ? $this->_albumData->{$attribute} : '';
 	}
 
 	/*
@@ -133,8 +160,7 @@ class YouTubeDriver extends SolariDriver
 	*/
 	public function title() 
 	{
-		return isset($this->_videoData['title']['$t']) ?
-		$this->_videoData['title']['$t'] : '';
+		return $this->getVideoAttribute('title');
 	}
 
 	
@@ -143,8 +169,7 @@ class YouTubeDriver extends SolariDriver
 	*/
 	public function description() 
 	{
-		return isset($this->_videoData['media$group']['media$description']['$t']) ? 
-		$this->_videoData['media$group']['media$description']['$t'] : '';
+		return $this->getVideoAttribute('description');
 	}
 
 
@@ -153,12 +178,6 @@ class YouTubeDriver extends SolariDriver
 	*/
 	public function img() 
 	{
-		# 2 is the defaul image with high quality.
-		# You can change that to:
-		# 0: default image
-		# 1: default image medium quality
-		# 3/4/5: differents images
-		return isset($this->_videoData['media$group']['media$thumbnail'][2]['url']) ?
-		$this->_videoData['media$group']['media$thumbnail'][2]['url'] : '';
+		return $this->getVideoAttribute('img');
 	}
 }

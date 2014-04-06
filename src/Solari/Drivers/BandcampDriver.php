@@ -5,6 +5,7 @@ namespace Solari\Drivers;
 use \Exception;
 use \DomDocument;
 use \DOMXPath;
+use \stdClass;
 
 libxml_use_internal_errors(true);
 
@@ -27,9 +28,9 @@ class BandcampDriver extends SolariDriver
 	/**
 	* Album data
 	*
-	* @var array
+	* @var stdClass
 	*/
-	private $_albumData = array();
+	private $_albumData;
 
 	/**
 	* DOM of the web
@@ -49,6 +50,7 @@ class BandcampDriver extends SolariDriver
 			throw new Exception("Bad url");
 		}
 
+		$this->_albumData = new stdClass;
 		$this->_url = $url;
 		$this->loadDom($url);
 		$this->setAlbumId($url);
@@ -147,14 +149,29 @@ class BandcampDriver extends SolariDriver
 		{
 			if ($m->getAttribute('property') == 'og:title')
 			{
-				$this->_title = $m->getAttribute('content');
+				$this->_albumData->title = $m->getAttribute('content');
 			}
 
 			if ($m->getAttribute('property') == 'og:image')
 			{
-				$this->_img = $m->getAttribute('content');
+				$this->_albumData->img = $m->getAttribute('content');
 			}
 		}
+	}
+
+
+	/**
+	* Return url
+	*/
+	public function getURL()
+	{
+		return $this->_url;
+	}
+
+
+	private function getAlbumAttribute($attribute)
+	{
+		return isset($this->_albumData->{$attribute}) ? $this->_albumData->{$attribute} : '';
 	}
 
 
@@ -170,7 +187,7 @@ class BandcampDriver extends SolariDriver
 	{
 		return '
 		<iframe style="border: 0; width: '.$width.'px; height: '.$height.'px;" src="http://bandcamp.com/EmbeddedPlayer/album='.$this->_albumId.'/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless>
-			<a href="http://sovereigngracemusic.bandcamp.com/album/30-three-decades-of-songs-for-the-church">'.$this->_title.'</a>
+			<a href="http://sovereigngracemusic.bandcamp.com/album/30-three-decades-of-songs-for-the-church">'.$this->getAlbumAttribute('title').'</a>
 		</iframe>';
 	}
 
@@ -180,7 +197,7 @@ class BandcampDriver extends SolariDriver
 	*/
 	public function title() 
 	{
-		return $this->_title;
+		return $this->getAlbumAttribute('title');
 	}
 
 	
@@ -189,7 +206,7 @@ class BandcampDriver extends SolariDriver
 	*/
 	public function description() 
 	{
-		return '';
+		return $this->getAlbumAttribute('description');
 	}
 
 
@@ -198,6 +215,6 @@ class BandcampDriver extends SolariDriver
 	*/
 	public function img() 
 	{
-		return $this->_img;
+		return $this->getAlbumAttribute('img');
 	}
 }
