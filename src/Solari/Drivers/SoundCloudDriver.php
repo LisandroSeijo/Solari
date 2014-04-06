@@ -41,7 +41,7 @@ class SoundCloudDriver extends SolariDriver
 	*
 	* @var stdClass
 	*/
-	private $_track;
+	private $_data;
 
 
 	/**
@@ -52,7 +52,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function __construct($url)
 	{
-		$this->_track = new stdClass();
+		$this->_data = new stdClass();
 		$this->_url = $url;
 		
 		try
@@ -136,7 +136,7 @@ class SoundCloudDriver extends SolariDriver
 			$this->_url = $url;
 		}
 
-		$this->_track = json_decode(
+		$this->_data = json_decode(
 			$this->_client->get(
 				'oembed', array('url' => $this->_url)
 			)
@@ -215,9 +215,9 @@ class SoundCloudDriver extends SolariDriver
 	}
 
 
-	private function getTrackAttribute($attribute)
+	private function getAttribute($attribute)
 	{
-		return isset($this->_track->{$attribute}) ? $this->_track->{$attribute} : '';
+		return isset($this->_data->{$attribute}) ? $this->_data->{$attribute} : '';
 	}
 
 
@@ -231,7 +231,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function embed()
 	{
-		return $this->getTrackAttribute('html');
+		return $this->getAttribute('html');
 	}
 
 
@@ -240,7 +240,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function title()
 	{
-		return $this->getTrackAttribute('title');
+		return $this->getAttribute('title');
 	}
 
 
@@ -249,7 +249,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function description()
 	{
-		return $this->getTrackAttribute('description');
+		return $this->getAttribute('description');
 	}
 
 
@@ -258,7 +258,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function img()
 	{
-		return $this->getTrackAttribute('thumbnail_url');
+		return $this->getAttribute('thumbnail_url');
 	}
 
 
@@ -272,7 +272,7 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	public function artist()
 	{
-		return $this->getTrackAttribute('author_name');
+		return $this->getAttribute('author_name');
 	}
 
 
@@ -281,6 +281,6 @@ class SoundCloudDriver extends SolariDriver
 	*/ 
 	public function artistURL()
 	{
-		return $this->getTrackAttribute('author_url');
+		return $this->getAttribute('author_url');
 	}
 }

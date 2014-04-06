@@ -25,7 +25,7 @@ class YouTubeDriver extends SolariDriver
 	*
 	* @var stdClass
 	*/
-	private $_videoData;
+	private $_data;
 
 	
 	/**
@@ -40,7 +40,7 @@ class YouTubeDriver extends SolariDriver
 			throw new Exception("Bad url");
 		}
 
-		$this->_videoData = new stdClass;
+		$this->_data = new stdClass;
 		$this->_url = $url;
 		$this->setVideoId($url);
 		$this->loadVideo();
@@ -115,15 +115,15 @@ class YouTubeDriver extends SolariDriver
 		);
 
 		$data = $ytJson['entry'];
-		$this->_videoData->title = $data['title']['$t'];
-		$this->_videoData->description = $data['media$group']['media$description']['$t'];
+		$this->_data->title = $data['title']['$t'];
+		$this->_data->description = $data['media$group']['media$description']['$t'];
 
 		# 2 is the defaul image with high quality.
 		# You can change that to:
 		# 0: default image
 		# 1: default image medium quality
 		# 3/4/5: differents images
-		$this->_videoData->img = $data['media$group']['media$thumbnail'][2]['url'];
+		$this->_data->img = $data['media$group']['media$thumbnail'][2]['url'];
 	}
 
 
@@ -136,9 +136,9 @@ class YouTubeDriver extends SolariDriver
 	}
 
 
-	private function getVideoAttribute($attribute)
+	private function getAttribute($attribute)
 	{
-		return isset($this->_albumData->{$attribute}) ? $this->_albumData->{$attribute} : '';
+		return isset($this->_data->{$attribute}) ? $this->_data->{$attribute} : '';
 	}
 
 	/*
@@ -160,7 +160,7 @@ class YouTubeDriver extends SolariDriver
 	*/
 	public function title() 
 	{
-		return $this->getVideoAttribute('title');
+		return $this->getAttribute('title');
 	}
 
 	
@@ -169,7 +169,7 @@ class YouTubeDriver extends SolariDriver
 	*/
 	public function description() 
 	{
-		return $this->getVideoAttribute('description');
+		return $this->getAttribute('description');
 	}
 
 
@@ -178,6 +178,6 @@ class YouTubeDriver extends SolariDriver
 	*/
 	public function img() 
 	{
-		return $this->getVideoAttribute('img');
+		return $this->getAttribute('img');
 	}
 }
