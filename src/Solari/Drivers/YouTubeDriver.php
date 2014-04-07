@@ -42,7 +42,8 @@ class YouTubeDriver extends SolariDriver
 
 		$this->_data = new stdClass;
 		$this->_url = $url;
-		$this->setVideoId($url)->loadVideo();
+		
+		$this->setVideoId()->loadVideo();
 	}
 
 	

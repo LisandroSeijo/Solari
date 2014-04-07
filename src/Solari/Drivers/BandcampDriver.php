@@ -53,9 +53,7 @@ class BandcampDriver extends SolariDriver
 		$this->_data = new stdClass;
 		$this->_url = $url;
 		
-		$this->loadDom()
-		->setAlbumId()
-		->loadAlbum();
+		$this->loadDom()->setAlbumId()->loadAlbum();
 	}
 
 
