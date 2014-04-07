@@ -52,9 +52,10 @@ class BandcampDriver extends SolariDriver
 
 		$this->_data = new stdClass;
 		$this->_url = $url;
-		$this->loadDom($url);
-		$this->setAlbumId($url);
-		$this->loadAlbum($url);
+		
+		$this->loadDom()
+		->setAlbumId()
+		->loadAlbum();
 	}
 
 
@@ -87,13 +88,15 @@ class BandcampDriver extends SolariDriver
 	*
 	* @return void
 	*/
-	private function loadDom($url)
+	private function loadDom()
 	{
 		$this->_dom = new DomDocument();
 		
 		$this->_dom->loadHTML(
-			file_get_contents($url)
+			file_get_contents($this->_url)
 		);
+
+		return $this;
 	}
 
 
@@ -141,6 +144,8 @@ class BandcampDriver extends SolariDriver
 	public function setAlbumId()
 	{
 		$this->_albumId = $this->getAlbumId($this->_url);
+
+		return $this;
 	}
 
 
@@ -168,6 +173,8 @@ class BandcampDriver extends SolariDriver
 				$this->_data->img = $m->getAttribute('content');
 			}
 		}
+
+		return $this;
 	}
 
 

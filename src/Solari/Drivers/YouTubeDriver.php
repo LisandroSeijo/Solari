@@ -42,8 +42,7 @@ class YouTubeDriver extends SolariDriver
 
 		$this->_data = new stdClass;
 		$this->_url = $url;
-		$this->setVideoId($url);
-		$this->loadVideo();
+		$this->setVideoId($url)->loadVideo();
 	}
 
 	
@@ -89,11 +88,13 @@ class YouTubeDriver extends SolariDriver
 	/**
 	* Set Video id
 	*
-	* @return void
+	* @return this
 	*/
 	public function setVideoId()
 	{
 		$this->_videoId = $this->getVideoId($this->_url);
+
+		return $this;
 	}
 
 
@@ -134,6 +135,8 @@ class YouTubeDriver extends SolariDriver
 		# 1: default image medium quality
 		# 3/4/5: differents images
 		$this->_data->img = $data['media$group']['media$thumbnail'][2]['url'];
+
+		return $this;
 	}
 
 
