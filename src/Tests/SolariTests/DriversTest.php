@@ -80,4 +80,39 @@ class DriversTest extends PHPUnit_Framework_TestCase
 			$this->clientSoundcloud->artist()
 		);
 	}
+
+
+	public function testMoveImage()
+	{
+		if (!is_writable($path = dirname(__FILE__)))
+		{
+			return;
+		}
+
+		$path .= '/testimg';
+
+		if (!file_exists($path))
+		{
+			if (!mkdir($path, 0777))
+			{
+				return;
+			}
+		}
+
+		$this->assertTrue(
+			$this->clientYouTube->saveImage(
+				$path,
+				'test',
+				true
+			)
+		);
+
+		unlink(
+			$path.
+			'/test.'.
+			$this->clientYouTube->getExtensionImagen()
+		);
+
+		rmdir($path);
+	}
 }
