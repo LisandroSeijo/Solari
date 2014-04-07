@@ -212,6 +212,11 @@ class BandcampDriver extends SolariDriver
 	*/
 	public function embed() 
 	{
+		if (empty($this->_albumId))
+		{
+			return '';
+		}
+		
 		return '
 		<iframe style="border: 0; width: 100%; height: 470px;" src="http://bandcamp.com/EmbeddedPlayer/album='.$this->_albumId.'/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless>
 			<a href="http://sovereigngracemusic.bandcamp.com/album/30-three-decades-of-songs-for-the-church">'.$this->getAttribute('title').'</a>

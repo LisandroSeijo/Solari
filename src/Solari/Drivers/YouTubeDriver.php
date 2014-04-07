@@ -174,9 +174,14 @@ class YouTubeDriver extends SolariDriver
 	*
 	* @return string
 	*/
-	public function embed($width = 420, $height = 315) 
+	public function embed() 
 	{
-		return '<iframe width="'.$width.'" height="'.$height.'" src="//www.youtube.com/embed/'.$this->_videoId.'" frameborder="0" allowfullscreen></iframe>';
+		if (empty($this->_videoId))
+		{
+			return '';
+		}
+		
+		return '<iframe width="100%" height="'.$height.'" src="//www.youtube.com/embed/'.$this->_videoId.'" frameborder="0" allowfullscreen></iframe>';
 	}
 
 	
