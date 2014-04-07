@@ -81,11 +81,15 @@ abstract class SolariDriver
 		{
 			return false;
 		}
+
+		return true;
 	}
 
 
 	/**
 	* Return image extension
+	*
+	* @return string
 	*/
 	public function getExtensionImagen()
 	{
