@@ -51,6 +51,7 @@ class YouTubeDriver extends SolariDriver
 	* Check if url exists
 	*
 	* @param string $url
+	*
 	* @return bool
 	*/
 	public function checkURL($url)
@@ -73,6 +74,8 @@ class YouTubeDriver extends SolariDriver
 	
 	/**
 	* Return video id
+	*
+	* @return int
 	*/
 	public function getVideoId($url)
 	{
@@ -85,6 +88,8 @@ class YouTubeDriver extends SolariDriver
 	
 	/**
 	* Set Video id
+	*
+	* @return void
 	*/
 	public function setVideoId()
 	{
@@ -92,6 +97,11 @@ class YouTubeDriver extends SolariDriver
 	}
 
 
+	/**
+	* Load video's data
+	*
+	* @return void
+	*/
 	public function loadVideo()
 	{
 		$ytJson = json_decode(
@@ -129,6 +139,8 @@ class YouTubeDriver extends SolariDriver
 
 	/**
 	* Return url
+	*
+	* @return string
 	*/
 	public function getURL()
 	{
@@ -136,6 +148,13 @@ class YouTubeDriver extends SolariDriver
 	}
 
 
+	/**
+	* Return a specific attribute
+	*
+	* @param string $attribute attribute name
+	*
+	* @return mixed
+	*/
 	private function getAttribute($attribute)
 	{
 		return isset($this->_data->{$attribute}) ? $this->_data->{$attribute} : '';
@@ -148,6 +167,8 @@ class YouTubeDriver extends SolariDriver
 	*/
 	/**
 	* Iframe code to embed video
+	*
+	* @return string
 	*/
 	public function embed($width = 420, $height = 315) 
 	{
@@ -157,6 +178,8 @@ class YouTubeDriver extends SolariDriver
 	
 	/**
 	* Video title
+	*
+	* @return string
 	*/
 	public function title() 
 	{
@@ -166,6 +189,8 @@ class YouTubeDriver extends SolariDriver
 	
 	/**
 	* Video description
+	*
+	* @return string
 	*/
 	public function description() 
 	{
@@ -175,6 +200,8 @@ class YouTubeDriver extends SolariDriver
 
 	/**
 	* Video image
+	*
+	* @return string
 	*/
 	public function img() 
 	{

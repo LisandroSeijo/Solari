@@ -22,6 +22,8 @@ class Solari
 
 	/**
 	* Return a driver
+	*
+	* @return Solari\Driver\SolariDriver
 	*/
 	public static function sound($url)
 	{
@@ -36,6 +38,8 @@ class Solari
 
 	/**
 	* Check the url and select driver
+	*
+	* @return Solari\Driver\SolariDriver|boolean
 	*/
 	protected static function getDriver($url)
 	{
@@ -70,6 +74,10 @@ class Solari
 
 	/**
 	* Return driver name
+	*
+	* @param string $url
+	*
+	* @return string
 	*/
 	protected static function getDriverName($url)
 	{
@@ -91,6 +99,10 @@ class Solari
 
 	/**
 	* Return if a url is supported
+	*
+	* @param string $url
+	*
+	* @return boolean
 	*/
 	public static function isSupported($url)
 	{

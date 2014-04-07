@@ -62,6 +62,7 @@ class BandcampDriver extends SolariDriver
 	* Check if url exists
 	*
 	* @param string $url
+	*
 	* @return bool
 	*/
 	public function checkURL($url)
@@ -83,6 +84,8 @@ class BandcampDriver extends SolariDriver
 	* Load DOM of the web
 	*
 	* @param string $url
+	*
+	* @return void
 	*/
 	private function loadDom($url)
 	{
@@ -96,6 +99,10 @@ class BandcampDriver extends SolariDriver
 
 	/**
 	* Return album id
+	*
+	* @param string $url
+	*
+	* @return int
 	*/
 	public function getAlbumId($url)
 	{
@@ -128,6 +135,8 @@ class BandcampDriver extends SolariDriver
 
 	/**
 	* Set Album id
+	*
+	* @return void
 	*/
 	public function setAlbumId()
 	{
@@ -137,6 +146,8 @@ class BandcampDriver extends SolariDriver
 
 	/**
 	* Set album information
+	*
+	* @return void
 	*/
 	private function loadAlbum()
 	{
@@ -162,6 +173,8 @@ class BandcampDriver extends SolariDriver
 
 	/**
 	* Return url
+	*
+	* @return string
 	*/
 	public function getURL()
 	{
@@ -169,6 +182,13 @@ class BandcampDriver extends SolariDriver
 	}
 
 
+	/**
+	* Return a specific attribute
+	*
+	* @param string $attribute attribute name
+	*
+	* @return mixed
+	*/
 	private function getAttribute($attribute)
 	{
 		return isset($this->_data->{$attribute}) ? $this->_data->{$attribute} : '';
@@ -182,11 +202,13 @@ class BandcampDriver extends SolariDriver
 	*/
 	/**
 	* Iframe code to embed video
+	*
+	* @return string
 	*/
-	public function embed($width = 350, $height = 470) 
+	public function embed() 
 	{
 		return '
-		<iframe style="border: 0; width: '.$width.'px; height: '.$height.'px;" src="http://bandcamp.com/EmbeddedPlayer/album='.$this->_albumId.'/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless>
+		<iframe style="border: 0; width: 100%; height: 470px;" src="http://bandcamp.com/EmbeddedPlayer/album='.$this->_albumId.'/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless>
 			<a href="http://sovereigngracemusic.bandcamp.com/album/30-three-decades-of-songs-for-the-church">'.$this->getAttribute('title').'</a>
 		</iframe>';
 	}
@@ -194,6 +216,8 @@ class BandcampDriver extends SolariDriver
 	
 	/**
 	* Video title
+	*
+	* @return string
 	*/
 	public function title() 
 	{
@@ -203,6 +227,8 @@ class BandcampDriver extends SolariDriver
 	
 	/**
 	* Video description
+	*
+	* @return string
 	*/
 	public function description() 
 	{
@@ -212,6 +238,8 @@ class BandcampDriver extends SolariDriver
 
 	/**
 	* Video image
+	*
+	* @return string
 	*/
 	public function img() 
 	{

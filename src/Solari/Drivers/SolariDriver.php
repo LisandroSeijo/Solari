@@ -29,6 +29,8 @@ abstract class SolariDriver
 
 	/**
 	* Return data in json
+	*
+	* @return json
 	*/
 	public function toJson()
 	{
@@ -50,7 +52,7 @@ abstract class SolariDriver
 	* @param string $imgName image's name 
 	* @param boolean $addExtention add the extention to $imgName
 	*
-	* @return void
+	* @return boolean
 	*/
 	public function saveImage($path, $imgName, $addExtension = false)
 	{

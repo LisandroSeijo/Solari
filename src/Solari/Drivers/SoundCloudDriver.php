@@ -49,6 +49,10 @@ class SoundCloudDriver extends SolariDriver
 	* 
 	* @param string $clientID
 	* @param string $clientSecret
+	*
+	* @throws Exception if have problems with connect()
+	*
+	* @return void
 	*/
 	public function __construct($url)
 	{
@@ -68,6 +72,11 @@ class SoundCloudDriver extends SolariDriver
 
 	/**
 	* Class initialize
+	*
+	* @throws Exception if $clientID or $clientSecret is empty
+	* @throws Exception if checkURL fails
+	*
+	* @return void
 	*/
 	private function connect()
 	{
@@ -106,6 +115,8 @@ class SoundCloudDriver extends SolariDriver
 	* Check if url exists
 	*
 	* @param string $url
+	*
+	* @return boolean
 	*/
 	public function checkURL($url = null)
 	{
@@ -128,6 +139,10 @@ class SoundCloudDriver extends SolariDriver
 
 	/**
 	* Load track info
+	*
+	* @param string $url
+	*
+	* @return void
 	*/
 	public function loadURL($url = null)
 	{
@@ -153,6 +168,8 @@ class SoundCloudDriver extends SolariDriver
 	* Soundcloud client id
 	*
 	* @param string
+	*
+	* @return void
 	*/
 	public function setClientID($val)
 	{
@@ -164,6 +181,8 @@ class SoundCloudDriver extends SolariDriver
 	* Soundcloud client secret
 	*
 	* @param string
+	*
+	* @return void
 	*/
 	public function setClientSecret($val)
 	{
@@ -175,6 +194,8 @@ class SoundCloudDriver extends SolariDriver
 	* Set url
 	*
 	* @param string
+	*
+	* @return void
 	*/
 	public function setURL($val)
 	{
@@ -190,6 +211,8 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	/**
 	* Return soundcloud client id
+	*
+	* @return string
 	*/
 	public function getClientID()
 	{
@@ -199,6 +222,8 @@ class SoundCloudDriver extends SolariDriver
 
 	/**
 	* Return soundcloud client secret
+	*
+	* @return string
 	*/
 	public function getClientSecret()
 	{
@@ -208,6 +233,8 @@ class SoundCloudDriver extends SolariDriver
 
 	/**
 	* Return url
+	*
+	* @return string
 	*/
 	public function getURL()
 	{
@@ -215,7 +242,14 @@ class SoundCloudDriver extends SolariDriver
 	}
 
 
-	private function getAttribute($attribute)
+	/**
+	* Return a specific attribute
+	*
+	* @param string $attribute attribute name
+	*
+	* @return mixed
+	*/
+	public function getAttribute($attribute)
 	{
 		return isset($this->_data->{$attribute}) ? $this->_data->{$attribute} : '';
 	}
@@ -228,6 +262,8 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	/**
 	* Iframe code to embed track
+	*
+	* @return string
 	*/
 	public function embed()
 	{
@@ -237,6 +273,8 @@ class SoundCloudDriver extends SolariDriver
 
 	/**
 	* Track title
+	*
+	* @return string
 	*/
 	public function title()
 	{
@@ -246,6 +284,8 @@ class SoundCloudDriver extends SolariDriver
 
 	/**
 	* Track description
+	*
+	* @return string
 	*/
 	public function description()
 	{
@@ -255,6 +295,8 @@ class SoundCloudDriver extends SolariDriver
 
 	/**
 	* Track image
+	*
+	* @return string
 	*/
 	public function img()
 	{
@@ -269,6 +311,8 @@ class SoundCloudDriver extends SolariDriver
 	*/
 	/**
 	* Track artist
+	*
+	* @return string
 	*/
 	public function artist()
 	{
@@ -278,6 +322,8 @@ class SoundCloudDriver extends SolariDriver
 
 	/**
 	* URL track artist
+	*
+	* @return string
 	*/ 
 	public function artistURL()
 	{

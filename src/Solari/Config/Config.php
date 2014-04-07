@@ -4,9 +4,22 @@ namespace Solari\Config;
 
 class Config
 {
+	/**
+	* Config data
+	*
+	* @var array
+	*/
 	static private $config;
 
 
+	/**
+	* Return a config value
+	*
+	* @param $key key
+	* @param $value value
+	*
+	* @return mixed
+	*/
 	static public function get($key, $value = null)
 	{
 		if (!self::checkLoad())
@@ -24,7 +37,12 @@ class Config
 	}
 
 
-	static public function checkLoad()
+	/**
+	* Check if the $config id loaded
+	*
+	* @return boolean
+	*/
+	static private function checkLoad()
 	{
 		if (empty(self::$config))
 		{
